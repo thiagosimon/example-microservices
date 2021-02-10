@@ -1,0 +1,13 @@
+{
+  "name": "hp-message-ioasys",
+  "version": "1.0.0",
+  "description": "Helper module responsable for manage messages",
+  "private": false,
+  "main": "app.js",
+  "author": "Thiago Simon",
+  "license": "MIT",
+  "dependencies": {
+    "i18n": "^0.8.3",
+    "express": "^4.17.1"
+  }
+}

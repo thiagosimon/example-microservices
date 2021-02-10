@@ -1,0 +1,14 @@
+ 
+ ### DEPLOY ON HEROKU ###
+
+----API-GATEWAY----
+docker ps
+heroku container:login
+heroku container:push web --arg ENV=live,HTTPS=on  --app=api-gateway-ioasys
+heroku container:release web --app=api-gateway-ioasys
+
+----MS-USER-------
+docker ps
+heroku container:login
+heroku container:push web --arg ENV=live,HTTPS=on  --app=ms-user-ioasys
+heroku container:release web --app=ms-user-ioasys

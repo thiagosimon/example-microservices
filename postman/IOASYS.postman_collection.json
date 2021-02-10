@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "80da2121-5732-418c-84b2-07c31d7e4f9c",
+		"name": "IOASYS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "System User",
+					"item": [
+						{
+							"name": "Customer",
+							"item": [
+								{
+									"name": "Create CUSTOMER User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{access-token}}",
+												"disabled": true
+											},
+											{
+												"key": "x-correlation-id",
+												"value": "{{correlation-id}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"firstName\": \"Thiago\",\n\t\"lastName\": \"Simon\",\n\t\"email\": \"contato@thiagosimon.com\",\n\t\"password\": \"12345678\",\n\t\"primaryPhone\": \"11972194501\",\n\t\"type\": \"USER-CUSTOMER\",\n\t\"customerUser\": {\n\t\t\"subtype\": \"CUSTOMER-USER\",\n        \"status\": \"ACTIVE\",\n        \"document\":\"29.493.105-3\"\n\t}\n}"
+										},
+										"url": {
+											"raw": "{{domain}}/api/users/v1",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"users",
+												"v1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Edit CUSTOMER USER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{access-token}}"
+											},
+											{
+												"key": "x-correlation-id",
+												"type": "text",
+												"value": "{{correlation-id}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n            \"_id\": \"6023f9c788f8fe1788ec3d9d\",\n            \"status\": \"ACTIVE\",\n            \"date\": \"2021-02-10T15:20:39.584Z\",\n            \"firstName\": \"Thiago\",\n            \"lastName\": \"Simon\",\n            \"email\": \"contato@thiagosimon.com\",\n            \"primaryPhone\": \"11972194501\",\n            \"type\": \"USER-CUSTOMER\",\n            \"customerUser\": {\n                \"_id\": \"6023f9c788f8fe1788ec3d9c\",\n                \"status\": \"ACTIVE\",\n                \"document\":\"29.493.105-3\",\n                \"dateBirth\":\"1990-04-03T00:00:00-03:00\",\n                \"gender\":\"MALE\",\n                \"__v\": 0\n            },\n            \"__v\": 0\n        }"
+										},
+										"url": {
+											"raw": "{{domain}}/api/users/v1/6023f9c788f8fe1788ec3d9d",
+											"host": [
+												"{{domain}}"
+											],
+											"path": [
+												"api",
+												"users",
+												"v1",
+												"6023f9c788f8fe1788ec3d9d"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.environment.set(\"access-token\", jsonData.token);",
+											"pm.environment.set(\"correlation-id\", postman.getResponseHeader(\"x-correlation-id\") );",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"contato@thiagosimon.com\",\n\t\"password\": \"12345678\",\n\t\"deviceInfo\": {\n\t\t\"deviceId\": \"iPhone7,2\",\n\t\t\"brand\": \"Apple\",\n\t\t\"buildNumber\": \"1.0.0\",\n\t\t\"manufacturer\": \"iOS\",\n\t\t\"systemName\": \"iOS\",\n\t\t\"systemVersion\": \"11.0\",\n\t\t\"buildId\": \"12A269\",\n\t\t\"uniqueID\": \"FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{domain}}/api/users/system/login/v1",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"system",
+										"login",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"correlation-id\", postman.getResponseHeader(\"x-correlation-id\") );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{access-token}}",
+										"type": "text"
+									},
+									{
+										"key": "x-correlation-id",
+										"value": "{{correlation-id}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/users/v1/contato@thiagosimon.com",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"v1",
+										"contato@thiagosimon.com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get ME",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"correlation-id\", postman.getResponseHeader(\"x-correlation-id\") );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access-token}}"
+									},
+									{
+										"key": "x-correlation-id",
+										"type": "text",
+										"value": "{{correlation-id}}"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{domain}}/api/users/me/v1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"me",
+										"v1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"correlation-id\", postman.getResponseHeader(\"x-correlation-id\") );"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access-token}}"
+									},
+									{
+										"key": "x-correlation-id",
+										"value": "{{correlation-id}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{domain}}/api/users/v1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"v1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access-token}}"
+									},
+									{
+										"key": "x-correlation-id",
+										"value": "{{correlation-id}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{domain}}/api/users/delete/v1/602411463244d809687f11eb",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"delete",
+										"v1",
+										"602411463244d809687f11eb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List By Type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-correlation-id",
+										"type": "text",
+										"value": "{{correlation-id}}"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{access-token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"type\": \"USER-CUSTOMER\"\n\t\n}"
+								},
+								"url": {
+									"raw": "{{domain}}/api/users/bytype/v1/",
+									"host": [
+										"{{domain}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"bytype",
+										"v1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

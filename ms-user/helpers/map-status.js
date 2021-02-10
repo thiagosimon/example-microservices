@@ -1,0 +1,10 @@
+var newModule = {
+    ACTIVE: "ACTIVE",
+    SUSPENDED: "SUSPENDED",
+    REJECTED: "REJECTED",
+    WAITING_FOR_APPROVAL: "WAITING_FOR_APPROVAL",
+    ARCHIVED: "ARCHIVED",
+    CLOSED: "CLOSED",
+    RESET_PASSWORD: "RESET-PASSWORD"
+};
+module.exports = newModule;

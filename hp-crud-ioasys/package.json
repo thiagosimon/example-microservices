@@ -1,0 +1,15 @@
+{
+  "name": "hp-crud-ioasys",
+  "version": "1.0.0",
+  "description": "Helper module responsable for manage the CRUD",
+  "private": false,
+  "main": "controller/crt-crud.js",
+  "author": "Thiago Simon",
+  "license": "MIT",
+  "dependencies": {
+    "hp-message-ioasys": "^1.0.0",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.15",
+    "save": "^2.4.0"
+  }
+}
